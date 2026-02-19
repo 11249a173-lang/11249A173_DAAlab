@@ -4,10 +4,11 @@ int firstFit(int items[], int n, int capacity)
 {
     int bin_rem[MAX] = {0};
     int bins = 0;
-    for(int i = 0; i < n; i++)
+    int i,j;
+    for(i = 0; i < n; i++)
     {
         int placed = 0;
-        for(int j = 0; j < bins; j++)
+        for( j = 0; j < bins; j++)
         {
             if(bin_rem[j] >= items[i])
             {
@@ -26,9 +27,10 @@ int firstFit(int items[], int n, int capacity)
 }
 int firstFitDec(int items[], int n, int capacity)
 {
-    for(int i = 0; i < n-1; i++)
+	int i,j;
+    for(i = 0; i < n-1; i++)
     {
-        for(int j = 0; j < n-i-1; j++)
+        for( j = 0; j < n-i-1; j++)
         {
             if(items[j] < items[j+1])
             {
@@ -44,11 +46,12 @@ int bestFit(int items[], int n, int capacity)
 {
     int bin_rem[MAX] = {0};
     int bins = 0;
-    for(int i = 0; i < n; i++)
+    int i,j;
+    for( i = 0; i < n; i++)
     {
         int best = -1;
         int min_rem = capacity + 1;
-        for(int j = 0; j < bins; j++)
+        for( j = 0; j < bins; j++)
         {
             if(bin_rem[j] >= items[i] &&
                (bin_rem[j] - items[i]) < min_rem)
@@ -73,10 +76,11 @@ int main()
 {
     int items[MAX], items_copy[MAX];
     int n, capacity;
+    int i,j;
     printf("Enter number of items: ");
     scanf("%d", &n);
     printf("Enter %d item sizes: ", n);
-    for(int i = 0; i < n; i++)
+    for(i = 0; i < n; i++)
     {
         scanf("%d", &items[i]);
         items_copy[i] = items[i]; 
@@ -85,7 +89,7 @@ int main()
     scanf("%d", &capacity);
     printf("\n=== BIN PACKING RESULTS ===\n");
     printf("Items: ");
-    for(int i = 0; i < n; i++)
+    for( i = 0; i < n; i++)
         printf("%d ", items[i]);
     printf("\nBin Capacity: %d\n\n", capacity);
     printf("First Fit: %d bins\n", firstFit(items, n, capacity));
@@ -93,4 +97,3 @@ int main()
     printf("Best Fit: %d bins\n", bestFit(items, n, capacity));
     return 0;
 }
-
